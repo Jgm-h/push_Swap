@@ -1,0 +1,6 @@
+five:
+    on compare un element a celui d'apres (sauf si l'element de base est le dernier)
+        si 1 < 2
+            on avance
+        si 1 > 2
+            on echange
