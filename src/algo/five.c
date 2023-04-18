@@ -2,34 +2,26 @@
 
 void	five(t_stack *stack)
 {
-	int			i;
+	int			count;
 	t_module	*current;
 
-	i = 0;
 	current = stack->top;
-	while (i < stack->size)
+	count = 0;
+	while(!count)
 	{
-		if (current->data < current->next->data)
-		{
-			ft_printf("%s\n", "ra");
-			current = current->next;
-		}
-		if (!current->next)
-		{
-			if (current->data > stack->top->data)
-			{
-				ft_printf("%s\n", "ra");
-				current = stack->top;
-			}
-		}
-		current = compare(stack, current);
-		if (current != stack->top)
+		if (current->next && current->data > current->next->data)
 			swap(stack, current);
-	}
-	while (stack->top)
-	{
-		printf("%d\n", stack->top->data);
-		stack->top = stack->top->next;
+		else if (!current->next && current->data < stack->top->data)
+			swap(stack, current);
+		else
+		{
+			ft_printf("%s", "ra/n");
+			if (current->next)
+				current = current->next;
+			else
+				current = stack->top;	
+		}
+		count = is_sorted(stack);
 	}
 }
 

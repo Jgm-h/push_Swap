@@ -14,9 +14,6 @@
 
 int	is_in_set(char c, char const *set)
 {
-	int	i;
-
-	i = 0;
 	while (*set)
 	{
 		if (*set++ == c)

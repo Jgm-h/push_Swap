@@ -43,8 +43,8 @@ void	ft_hexa(char c, unsigned long int arg, int *count)
 		ft_hexa(c, arg / 16, count);
 		arg = arg % 16;
 	}
-	if (arg >= 0 && arg < 16 && c == 'x')
+	if (arg < 16 && c == 'x')
 		*count += ft_print2((arg), "0123456789abcdef");
-	if (arg >= 0 && arg < 16 && c == 'X')
+	if (arg < 16 && c == 'X')
 		*count += ft_print2((arg), "0123456789ABCDEF");
 }

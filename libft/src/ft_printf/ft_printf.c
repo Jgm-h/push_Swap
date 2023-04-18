@@ -17,11 +17,9 @@ int	ft_printf(const	char *string, ...)
 {
 	int		count;
 	int		i;
-	int		nbrarg;
 	va_list	arg;
 
 	i = 0;
-	nbrarg = countargs(string);
 	count = 0;
 	va_start(arg, string);
 	while (string[i])

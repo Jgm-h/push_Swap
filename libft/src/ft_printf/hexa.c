@@ -30,8 +30,8 @@ void	hexa(char c, unsigned int arg, int *count)
 		hexa(c, arg / 16, count);
 		arg = arg % 16;
 	}
-	if (arg >= 0 && arg < 16 && c == 'x')
+	if (arg < 16 && c == 'x')
 		*count += ft_print((arg), "0123456789abcdef");
-	if (arg >= 0 && arg < 16 && c == 'X')
+	if (arg < 16 && c == 'X')
 		*count += ft_print((arg), "0123456789ABCDEF");
 }
