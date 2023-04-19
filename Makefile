@@ -1,7 +1,7 @@
 NAME = push_swap
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -I./libft/includes
+CFLAGS = -Wall -Wextra -Werror -g3 -I./libft/includes -fsanitize=address
 
 AR = ar -rc
 
@@ -20,7 +20,10 @@ SRCS = ./push_swap/push_swap.c\
 	   ./shared/stack_management.c \
 	   ./shared/special_atoi.c \
 	   ./shared/fill_stack.c \
+	   ./shared/median.c \
 	   ./algo/five.c \
+	   ./algo/hundred.c \
+
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
@@ -42,7 +45,7 @@ $(NAME) : $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR)
 	echo "Libft has been compiled..."
 	echo "Compiling push_swap"
-	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) -lft
+	$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) -lft
 	echo "push_swap has been compiled..."
 
 $(OBJS_DIR) :

@@ -15,13 +15,13 @@ void	five(t_stack *stack)
 			swap(stack, current);
 		else
 		{
-			ft_printf("%s", "ra/n");
+			ft_printf("%s", "ra\n");
 			if (current->next)
 				current = current->next;
 			else
 				current = stack->top;	
 		}
-		count = is_sorted(stack);
+		count = is_sorted(stack->top, stack->bottom);
 	}
 }
 

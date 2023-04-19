@@ -71,11 +71,11 @@ void	check_duplicates(t_module *node)
 		node = node->previous;
 }
 
-int	is_sorted(t_stack	*stack_a)
+int	is_sorted(t_module	*top, t_module *bottom)
 {
 	t_module	*node;
 
-	node = stack_a->top;
+	node = top;
 	while (node)
 	{
 		if (node->next)
@@ -88,7 +88,7 @@ int	is_sorted(t_stack	*stack_a)
 		else
 			break ;
 	}
-	if (node->data == stack_a->bottom->data)
+	if (node->data == bottom->data)
 		return (1);
 	else
 		return (0);

@@ -7,11 +7,21 @@
 # include "ft_printf.h"
 
 void		push_swap(t_stack *stack_a, t_stack *stack_b);
-int			is_sorted(t_stack	*stack_a);
+int			is_sorted(t_module	*top, t_module *bottom);
 void		push_swap_error(void);
 
 void		five(t_stack *stack_a);
+t_module	*compare(t_stack *stack, t_module *current);
+void		swap(t_stack *stack, t_module *current);
+
 void		hundred(t_stack *stack_a, t_stack *stack_b);
+int         median(t_stack *stack);
+void    	swap_median(t_module *top, t_module *current);
+void        fill_tmp(t_stack *tmp, t_stack *stack);
+void	    sort(t_stack *tmp);
+int	        find_median(t_stack	*tmp);
+void	    free_median(t_stack *tmp);
+
 void		five_hundred(t_stack *stack_a, t_stack *stack_b);
 
 t_module	*fill_stack(int argc, char **argv, t_stack **stack);
@@ -27,8 +37,6 @@ void		linking(t_module **tmp, t_module **node, t_stack **stack);
 void		check_duplicates(t_module *node);
 void		free_everything(t_stack *stack_a, t_stack *stack_b);
 
-t_module	*compare(t_stack *stack, t_module *current);
-void		swap(t_stack *stack, t_module *current);
 
 void		cmd_sa( );
 void		cmd_sb( );

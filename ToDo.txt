@@ -4,3 +4,8 @@ five:
             on avance
         si 1 > 2
             on echange
+hundred:
+    on trouve la médiane
+    on fait tout passer dans la stack_b en dessous de la médiane
+    on trie dans la stack_b:
+        on regarde si rotate ou reverse rotate
