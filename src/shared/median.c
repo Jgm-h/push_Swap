@@ -2,32 +2,38 @@
 
 int     median(t_stack *stack)
 {
-	t_stack *tmp;
-//	int		med;
+	t_stack		*tmp;
+	t_module	*top;
+	int		med;
 
 	tmp = init_stack();
-	tmp->top = init_node();
-	fill_tmp(tmp, stack);
+	tmp->top = fill_tmp(tmp, stack);
+	top = tmp->top;
+	while (top->next)
+		top = top->next;
+	tmp->bottom = top;
 	sort(tmp);
-//	med = find_median(tmp);
-//	free_median(tmp);
-//	printf("%d", med);
-	return (0);
+	med = find_median(tmp);
+	free_median(tmp);
+	return (med);
 }
 
-void	fill_tmp(t_stack *tmp, t_stack *stack)
+t_module	*fill_tmp(t_stack *tmp, t_stack *stack)
 {
+	t_module *top;
+
 	tmp->size = stack->size;
-	tmp->top = init_node();
-    while (stack->top != stack->bottom)
+	tmp->top= init_node();
+	top = tmp->top;
+    while (stack->top)
     {
+		if (stack->top->next)
+			tmp->top->next= init_node();
         tmp->top->data = stack->top->data;
-		tmp->top->next = init_node();
         tmp->top = tmp->top->next;
         stack->top = stack->top->next;
     }
-	tmp->bottom = tmp->top;
-    return ;
+    return (top);
 }
 
 void	sort(t_stack *tmp)

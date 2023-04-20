@@ -17,7 +17,7 @@ void		swap(t_stack *stack, t_module *current);
 void		hundred(t_stack *stack_a, t_stack *stack_b);
 int         median(t_stack *stack);
 void    	swap_median(t_module *top, t_module *current);
-void        fill_tmp(t_stack *tmp, t_stack *stack);
+t_module	*fill_tmp(t_stack *tmp, t_stack *stack);
 void	    sort(t_stack *tmp);
 int	        find_median(t_stack	*tmp);
 void	    free_median(t_stack *tmp);
