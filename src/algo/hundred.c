@@ -23,6 +23,16 @@ t_stack *push_b(t_stack *a, t_stack *b, int med)
     return (b);
 }
 
+t_module	*rot(t_stack *a)
+{
+	while (a->top->data >= med)
+	{
+		a->top = a->top->next;
+		printf("%s",)
+	}
+
+}
+
 int rot_or_revrot(t_stack *a, int med)
 {
     int         rot;
@@ -30,10 +40,21 @@ int rot_or_revrot(t_stack *a, int med)
 
     rot = 0;
     rev = 0;
-    while(current->data >= med)
+	if (a->top->data <= med)
+		return(0);
+    while (a->top->data >= med)
     {
-
-    }
+		a->top = a->top->next;
+		rot++;
+	}
+	while (a->bottom->data >= med)
+	{
+		a->bottom = a->bottom->previous;
+		rev++;
+	}
+	if (rev < rot)
+		return (1);
+	return (0);
 }
 
 int check(t_stack *a, int med)

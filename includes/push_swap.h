@@ -15,6 +15,11 @@ t_module	*compare(t_stack *stack, t_module *current);
 void		swap(t_stack *stack, t_module *current);
 
 void		hundred(t_stack *stack_a, t_stack *stack_b);
+t_module	*rot(t_stack *a);
+t_stack     *push_b(t_stack *a, t_stack *b, int med);
+int         check(t_stack *a, int med);
+int         rot_or_revrot(t_stack *a, int med);
+
 int         median(t_stack *stack);
 void    	swap_median(t_module *top, t_module *current);
 t_module	*fill_tmp(t_stack *tmp, t_stack *stack);
