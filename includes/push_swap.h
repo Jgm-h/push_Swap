@@ -15,9 +15,8 @@ t_module	*compare(t_stack *stack, t_module *current);
 void		swap(t_stack *stack, t_module *current);
 
 void		hundred(t_stack *stack_a, t_stack *stack_b);
-t_module	*rot(t_stack *a);
-t_stack     *push_b(t_stack *a, t_stack *b, int med);
-int         check(t_stack *a, int med);
+void        push_b(t_stack *a, t_stack *b, int med);
+int         check(t_stack *a, int med, int flag);
 int         rot_or_revrot(t_stack *a, int med);
 
 int         median(t_stack *stack);
@@ -30,7 +29,7 @@ void	    free_median(t_stack *tmp);
 void		five_hundred(t_stack *stack_a, t_stack *stack_b);
 
 t_module	*fill_stack(int argc, char **argv, t_stack **stack);
-void		fill_node(char *argv, t_module **node, t_stack **stack);
+void    	fill_node(char *argv, t_module **node, t_stack **stack);
 t_module	*init_node(void);
 t_stack		*init_stack(void);
 int			special_atoi(char *tab);
@@ -38,9 +37,10 @@ int			special_atoi(char *tab);
 int			check_args(char *tab);
 int			check_args_length(char *tab);
 int			is_numeric(char *tab);
-void		linking(t_module **tmp, t_module **node, t_stack **stack);
+void    	linking(t_module **tmp, t_module **node, t_stack **stack);
 void		check_duplicates(t_module *node);
 void		free_everything(t_stack *stack_a, t_stack *stack_b);
+void        relink(t_stack *a, t_stack *b, t_module *tmp);
 
 
 void		cmd_sa( );

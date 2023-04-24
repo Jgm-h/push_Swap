@@ -21,7 +21,9 @@ int     median(t_stack *stack)
 t_module	*fill_tmp(t_stack *tmp, t_stack *stack)
 {
 	t_module *top;
+	t_module *a_top;
 
+	a_top = stack->top;
 	tmp->size = stack->size;
 	tmp->top= init_node();
 	top = tmp->top;
@@ -33,6 +35,7 @@ t_module	*fill_tmp(t_stack *tmp, t_stack *stack)
         tmp->top = tmp->top->next;
         stack->top = stack->top->next;
     }
+	stack->top = a_top;
     return (top);
 }
 

@@ -1,8 +1,7 @@
 NAME = push_swap
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -I./libft/includes -fsanitize=address
-
+CFLAGS = -Wall -Wextra -Werror -g3 -I./libft/includes 
 AR = ar -rc
 
 SRCS_DIR = ./src/algo \
@@ -21,6 +20,7 @@ SRCS = ./push_swap/push_swap.c\
 	   ./shared/special_atoi.c \
 	   ./shared/fill_stack.c \
 	   ./shared/median.c \
+	   ./shared/push_b.c	\
 	   ./algo/five.c \
 	   ./algo/hundred.c \
 
