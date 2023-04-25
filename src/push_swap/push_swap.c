@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
 	{
 		a = init_stack();
 		a->top = fill_stack(argc, argv, &a);
-		check_duplicates(a->top);
+		check_duplicates(a);
 		b = init_stack();
 		if (is_sorted(a->top, a->bottom))
 		{

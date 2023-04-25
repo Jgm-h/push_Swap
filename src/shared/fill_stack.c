@@ -10,8 +10,12 @@ t_module	*fill_stack(int argc, char **argv, t_stack **stack)
 	while (++i < argc)
 		fill_node(argv[i], &node, stack);
 	if (!node->next)
+	{
 		(*stack)->bottom = node;
-	while (node->previous)
+		(*stack)->bottom->next = (*stack)->top;
+		(*stack)->top->previous = (*stack)->bottom;
+	}
+	while (node != (*stack)->top)
 		node = node->previous;
 	return (node);
 }
@@ -19,7 +23,7 @@ t_module	*fill_stack(int argc, char **argv, t_stack **stack)
 void	fill_node(char *argv, t_module **node, t_stack **stack)
 {
 	int			i;
-	char		**tab;
+	char			**tab;
 	t_module	*tmp;
 
 	i = -1;
@@ -60,6 +64,8 @@ t_stack	*init_stack(void)
 	stack->size = 0;
 	stack->bottom = NULL;
 	stack->top = NULL;
+	stack->smallest = INT_MAX;
+	stack->biggest = INT_MIN;
 	return (stack);
 }
 

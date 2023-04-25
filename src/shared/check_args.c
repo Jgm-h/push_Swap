@@ -47,28 +47,30 @@ int	is_numeric(char *tab)
 	return (1);
 }
 
-void	check_duplicates(t_module *node)
+void	check_duplicates(t_stack	*a)
 {
 	int			tmp;
+	t_module	*node;
 	t_module	*comparing;
 
-	while (node->next)
+	node = a->top;
+	while (node)
 	{
+		if (node == a->bottom)
+			break ;
 		tmp = node->data;
 		comparing = node->next;
 		while (1)
 		{
 			if (comparing->data == tmp)
 				push_swap_error();
-			if (comparing->next)
+			if (comparing != a->bottom)
 				comparing = comparing->next;
 			else
 				break ;
 		}
 		node = node->next;
 	}
-	while (node->previous)
-		node = node->previous;
 }
 
 int	is_sorted(t_module	*top, t_module *bottom)
@@ -78,12 +80,12 @@ int	is_sorted(t_module	*top, t_module *bottom)
 	node = top;
 	while (node)
 	{
-		if (node->next)
+		if (node != bottom)
 		{
 			if (node->data > node->next->data)
 				return (0);
 		}
-		if (node->next)
+		if (node != bottom)
 			node = node->next;
 		else
 			break ;

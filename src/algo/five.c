@@ -7,19 +7,20 @@ void	five(t_stack *stack)
 
 	current = stack->top;
 	count = 0;
-	while(!count)
+	while (!count)
 	{
-		if (current->next && current->data > current->next->data)
+		if (current != stack->bottom && current->data > current->next->data)
 			swap(stack, current);
-		else if (!current->next && current->data < stack->top->data)
+		else if (current == stack->bottom
+			&& current->data < current->next->data)
 			swap(stack, current);
 		else
 		{
 			ft_printf("%s", "ra\n");
-			if (current->next)
+			if (current != stack->bottom)
 				current = current->next;
 			else
-				current = stack->top;	
+				current = stack->top;
 		}
 		count = is_sorted(stack->top, stack->bottom);
 	}
@@ -59,7 +60,7 @@ void	swap(t_stack *stack, t_module *current)
 	int	tmp;
 
 	ft_printf("%s\n", "sa");
-	if (current->next)
+	if (current != stack->bottom)
 	{
 		tmp = current->data;
 		current->data = current->next->data;

@@ -1,65 +1,64 @@
 #include "push_swap.h"
 
-int     median(t_stack *stack)
+int	median(t_stack *stack)
 {
 	t_stack		*tmp;
-	t_module	*top;
-	int		med;
+	int			med;
 
 	tmp = init_stack();
 	tmp->top = fill_tmp(tmp, stack);
-	top = tmp->top;
-	while (top->next)
-		top = top->next;
-	tmp->bottom = top;
+
 	sort(tmp);
 	med = find_median(tmp);
+	printf("%d", med);
 	free_median(tmp);
 	return (med);
 }
 
 t_module	*fill_tmp(t_stack *tmp, t_stack *stack)
 {
-	t_module *top;
-	t_module *a_top;
+	t_module	*current;
+	t_module	*stack_top;
 
-	a_top = stack->top;
+	tmp->top = init_node();
+	current = tmp->top;
+	stack_top = stack->top;
 	tmp->size = stack->size;
-	tmp->top= init_node();
-	top = tmp->top;
-    while (stack->top)
-    {
-		if (stack->top->next)
-			tmp->top->next= init_node();
-        tmp->top->data = stack->top->data;
-        tmp->top = tmp->top->next;
-        stack->top = stack->top->next;
-    }
-	stack->top = a_top;
-    return (top);
+	while (1)
+	{
+		tmp->top->data = stack->top->data;
+		if (stack->top == stack->bottom)
+			break ;
+		tmp->top->next = init_node();
+		tmp->top = tmp->top->next;
+		stack->top = stack->top->next;
+	}
+	tmp->bottom = tmp->top;
+	stack->top = stack_top;
+	return (current);
 }
 
 void	sort(t_stack *tmp)
 {
-	int 		count;
+	int			count;
 	t_module	*current;
 	t_module	*top;
 
 	top = tmp->top;
 	current = tmp->top;
 	count = 0;
-	while(!count)
+	while (!count)
 	{
-		if (current->next && current->data > current->next->data)
+		if (current != tmp->bottom && current->data > current->next->data)
 			swap_median(tmp->top, current);
-		else if (!current->next && current->data < tmp->top->data)
+		else if (current == tmp->bottom && current->data < tmp->top->data)
 			swap_median(tmp->top, current);
 		else
 		{
-			if (current->next)
+			if (current != tmp->bottom)
 				current = current->next;
 			else
-				current = tmp->top;	
+				current = tmp->top;
 		}
 		count = is_sorted(tmp->top, tmp->bottom);
 	}
@@ -89,7 +88,7 @@ int	find_median(t_stack	*tmp)
 	int	i;
 
 	i = 0;
-	while(i < tmp->size/2)
+	while (i < tmp->size / 2)
 	{
 		tmp->top = tmp->top->next;
 		i++;

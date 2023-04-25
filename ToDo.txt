@@ -1,14 +1,7 @@
 TO NOTE:
-the stacks are not circular, but they are doubly linked.
+the stacks are  circular, and they are doubly linked.
 when you modify a stack state in a function it's modified in the memory.
 
-
-
-five:
-    on compare un element a celui d'apres (sauf si l'element de base est le dernier)
-        si 1 < 2
-            on avance
-        si 1 > 2
-            on echange
 hundred:
-    the problem is when you reverse rotate since it's not circular there is a bug.
+    clean push_b
+    clean push_a
