@@ -2,33 +2,27 @@
 
 void	push_b(t_stack *a, t_stack *b, int med)
 {
+    printf("%d\n", a->bottom->data);
 	while (check(a, med, 1))
 	{
 		if (rot_or_revrot(a, med) < 0)
-		{
-			a->top->previous = a->bottom;
-			a->bottom->next = a->top;
-			while (a->top->data >= med) //bug here, with the bottom/top situation
+        {
+			while (a->top->data >= med) 
 			{
 				a->top = a->top->next;
 				ft_printf("%s", "ra\n");
 			}
 			cmd_pb(a, b);
-			a->bottom = a->top->previous;
-			a->top->previous = NULL;
-			a->bottom->next = NULL;
 		}
-		else if (rot_or_revrot(a, med) == 0)
+		else if(rot_or_revrot(a, med) == 0)
 			cmd_pb(a, b);
 		else
 			rot(a, b, med, 1);
-	}
+    }
 }
 
 void	rot(t_stack *a, t_stack *b, int med, int flag)
 {
-	a->top->previous = a->bottom;
-	a->bottom->next = a->top;
 	if (flag)
 	{
 		while (a->top->data >= med)
@@ -45,9 +39,6 @@ void	rot(t_stack *a, t_stack *b, int med, int flag)
 			ft_printf("%s", "rra\n");
 		}
 	}
-	a->bottom = a->top->previous;
-	a->top->previous->next = NULL;
-	a->top->previous = NULL;
 	cmd_pb(a, b);
 }
 
@@ -72,7 +63,7 @@ t_stack	*second_push(t_stack *a, t_stack *b, int med)
 	return (b);
 }
 
-int	rot_or_revrot(t_stack *a, int med)
+int	rot_or_revrot(t_stack *a, int med) //bug
 {
 	int			rot;
 	int			rev;
@@ -80,16 +71,16 @@ int	rot_or_revrot(t_stack *a, int med)
 
 	current = a->top;
 	rot = 0;
-	rev = 1;
+	rev = 0;
 	if (current->data < med)
 		return (0);
-	while (current->data >= med && current->next)
+	while (current->data >= med)
 	{
 		current = current->next;
 		rot++;
 	}
-	current = a->bottom;
-	while (current->data >= med && current->previous)
+	current = a->top;
+	while (current->data >= med)
 	{
 		current = current->previous;
 		rev++;

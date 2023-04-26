@@ -50,22 +50,29 @@ void	cmd_pb(t_stack *a, t_stack *b)
 	relink(a, b, tmp);
 }
 
-void	relink(t_stack *from, t_stack *to, t_module *tmp)
+void	relink(t_stack *from, t_stack *to, t_module *tmp) //clean this
 {
+	t_module	*hook;
+
 	if (!to->top)
 	{
 		to->top = tmp;
+		to->top->previous = tmp;
+		to->top->next = tmp;
 		to->bottom = tmp;
 	}
 	else
 	{
+		tmp->previous = to->bottom;
+		to->bottom->next = tmp;
 		to->top->previous = tmp;
 		tmp->next = to->top;
 		to->top = to->top->previous;
 	}
-	tmp = from->top;
+	hook = from->top;
 	from->top = from->top->next;
-	free(tmp);
-	to->size++;
-	from->size--;
+	from->top->previous = from->bottom;
+	from->bottom->next = from->top;
+	printf("%d\n", from->bottom->next->data);
+	free(hook);
 }
