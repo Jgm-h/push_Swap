@@ -5,6 +5,11 @@ void    call(t_stack *a);
 
 int main(void)
 {
+	if (0 < 0)
+		printf("%d", 1);
+	else
+		printf("%d", 0);
+	/*
     t_stack    *a;
     t_module    *tmp;
     t_module    *top;
@@ -24,11 +29,11 @@ int main(void)
     a->top = top;
     printf("\n%d", a->top->data);
     call(a);
-    printf("\n%d", a->top->data);
+    printf("\n%d", a->top->data);*/
     return 0 ;
 }
 
-void    call(t_stack *a)
+void	call(t_stack *a)
 {
     a->top = a->top->next;
 }

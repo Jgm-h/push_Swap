@@ -2,24 +2,35 @@
 
 void	push_a(t_stack *a, t_stack *b)
 {
-	(void) a;
-	find(b);
-//	if (how_close(b))
-//		return ;
-//		reverse(b, a, how_close(b));
+	int	rot_rev_a;
+
+
+	while (b->top)
+	{
+		find(b);
+		rot_rev_a = how_close(b);
+		reverse(b, a, how_close(b));
+		if (rot_rev_a < 0)
+		{
+
+		}
+	}
+
+
+
+	//to clean that there is still a stack b->top after trying to push
 
 	/*find how close they are,
 	rev or rot,
-	push_a*/
+	push_a
+	then rotate a or leave on top*/
 }
 
 void	reverse(t_stack *b, t_stack *a, int flag)
 {
-	b->top->previous = b->bottom;
-	b->bottom->next = b->top;
 	if (flag < 0)
 	{
-		while (b->top->data != b->biggest || b->top->data != b->smallest)
+		while (b->top->data != b->biggest && b->top->data != b->smallest)
 		{
 			b->top = b->top->previous;
 			ft_printf("%s", "rrb\n");
@@ -27,15 +38,13 @@ void	reverse(t_stack *b, t_stack *a, int flag)
 	}
 	else
 	{
-		while (b->top->data != b->biggest || b->top->data != b->smallest)
+		while (b->top->data != b->biggest && b->top->data != b->smallest)
 		{
 			b->top = b->top->next;
-			ft_printf("%s", "rrb\n");
+			ft_printf("%s", "rb\n");
 		}
 	}
 	b->bottom = b->top->previous;
-	b->top->previous->next = NULL;
-	b->top->previous = NULL;
 	cmd_pa(a, b);
 }
 
@@ -44,6 +53,8 @@ void	find(t_stack *b)
 	t_module	*current;
 
 	current = b->top;
+	b->smallest = INT_MAX;
+	b->biggest = INT_MIN;
 	while (current->next)
 	{
 		if (current->data < b->smallest)
@@ -51,6 +62,8 @@ void	find(t_stack *b)
 		if (current->data > b->biggest)
 			b->biggest = current->data;
 		current = current->next;
+		if (current == b->top)
+			break ;
 	}
 }
 
@@ -61,15 +74,15 @@ int	how_close(t_stack *b)
 	int			rot;
 
 	rot = 0;
-	rev = 1;
+	rev = 0;
 	current = b->top;
-	while (current->data != b->smallest || current->data != b->biggest)
+	while (current->data != b->smallest && current->data != b->biggest)
 	{
 		current = current->next;
 		rot++;
 	}
-	current = b->bottom;
-	while (current->data != b->smallest || current->data != b->biggest)
+	current = b->top;
+	while (current->data != b->smallest && current->data != b->biggest)
 	{
 		current = current->previous;
 		rev++;

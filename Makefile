@@ -1,7 +1,7 @@
 NAME = push_swap
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -I./libft/includes -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 -I./libft/includes
 AR = ar -rc
 
 SRCS_DIR = ./src/algo \

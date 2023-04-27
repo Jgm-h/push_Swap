@@ -2,19 +2,19 @@
 
 void	push_b(t_stack *a, t_stack *b, int med)
 {
-    printf("%d\n", a->bottom->data);
 	while (check(a, med, 1))
 	{
+
 		if (rot_or_revrot(a, med) < 0)
         {
-			while (a->top->data >= med) 
+			while (a->top->data >= med)
 			{
 				a->top = a->top->next;
 				ft_printf("%s", "ra\n");
 			}
 			cmd_pb(a, b);
 		}
-		else if(rot_or_revrot(a, med) == 0)
+		else if (rot_or_revrot(a, med) == 0)
 			cmd_pb(a, b);
 		else
 			rot(a, b, med, 1);

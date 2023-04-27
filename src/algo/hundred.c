@@ -3,21 +3,10 @@
 void	hundred(t_stack *a, t_stack *b)
 {
 	int	med;
-
 	med = median(a);
 	push_b(a, b, med);
-	while (a->top)
-	{
-		printf("%d\n", a->top->data);
-		a->top = a->top->next;
-	}
-	while (b->top)
-	{
-		printf("%d", b->top->data);
-		b->top = b->top->next;
-	}
-	
-//	push_a(a, b);
+	push_a(a, b);
+
 //    b = second_push_b(a, med, 0);
 //    push_a(a, b);
 }

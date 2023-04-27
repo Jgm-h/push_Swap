@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 			return (0);
 		}
 		push_swap(a, b);
-		free_everything(a, b);
+//		free_everything(a, b);
 	}
 }
 

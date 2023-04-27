@@ -37,7 +37,20 @@ void	cmd_pa(t_stack *a, t_stack *b)
 	ft_printf("%s", "pa\n");
 	tmp = init_node();
 	tmp->data = b->top->data;
-	relink(b, a, tmp);
+	if (b->top == b->top->next)
+	{
+		tmp->previous = a->bottom;
+		a->bottom->next = tmp;
+		a->top->previous = tmp;
+		tmp->next = a->top;
+		a->top = a->top->previous;
+		b->top = NULL;
+		free(b->top);
+		b = NULL;
+		free(b);
+	}
+	else
+		relink(b, a, tmp);
 }
 
 void	cmd_pb(t_stack *a, t_stack *b)
@@ -50,7 +63,7 @@ void	cmd_pb(t_stack *a, t_stack *b)
 	relink(a, b, tmp);
 }
 
-void	relink(t_stack *from, t_stack *to, t_module *tmp) //clean this
+void	relink(t_stack *from, t_stack *to, t_module *tmp) //clean this, still buggy
 {
 	t_module	*hook;
 
@@ -71,8 +84,8 @@ void	relink(t_stack *from, t_stack *to, t_module *tmp) //clean this
 	}
 	hook = from->top;
 	from->top = from->top->next;
-	from->top->previous = from->bottom;
-	from->bottom->next = from->top;
-	printf("%d\n", from->bottom->next->data);
+	from->top->previous = from->top->previous->previous;
+	from->top->previous->next = from->top;
+	from->bottom = from->top->previous;
 	free(hook);
 }
