@@ -41,6 +41,9 @@ struct s_stack{
 	t_module	*bottom;
 	int			smallest;
 	int			biggest;
+    int         med;
+    int         quartmed;
+    int         threequartmed;
 };
 
 void	ft_bzero(void *s, size_t n);

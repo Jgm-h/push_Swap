@@ -15,21 +15,28 @@ t_module	*compare(t_stack *stack, t_module *current);
 void		swap(t_stack *stack, t_module *current);
 
 void		hundred(t_stack *stack_a, t_stack *stack_b);
-void		push_b(t_stack *a, t_stack *b, int med);
+void		push_b(t_stack *a, t_stack *b);
 int			check(t_stack *a, int med, int flag);
 int			rot_or_revrot(t_stack *a, int med);
 void		rot(t_stack *a, t_stack *b, int med, int flag);
+void	    second_push(t_stack *a, t_stack *b);
+
+void       five_hundred(t_stack *a, t_stack *b);
+void        push_b_five(t_stack *a, t_stack *b, int flag, int medinf);
+void    	rot_five(t_stack *a, t_stack *b, int medinf, int medsupp);
+int	        rot_or_revrot_five(t_stack *a, int medinf, int medsupp);
+int	        check_five(t_stack *stack, int medsupp, int medinf);
 
 void		push_a(t_stack *a, t_stack *b);
-void		find(t_stack *b);
+void		find(t_stack *stack);
 void		reverse(t_stack *b, t_stack *a, int flag);
 int			how_close(t_stack *b);
 
-int			median(t_stack *stack);
+void		median(t_stack *stack);
 void		swap_median(t_module *top, t_module *current);
 t_module	*fill_tmp(t_stack *tmp, t_stack *stack);
 void		sort(t_stack *tmp);
-int			find_median(t_stack	*tmp);
+void		find_median(t_stack	*tmp, t_stack *stack);
 void		free_median(t_stack *tmp);
 
 void		five_hundred(t_stack *stack_a, t_stack *stack_b);

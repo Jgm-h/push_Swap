@@ -3,19 +3,23 @@
 void	free_everything(t_stack *stack_a, t_stack *stack_b)
 {
 	t_module	*tmp;
-	
+
 	while (stack_a->top)
 	{
 		tmp = stack_a->top;
 		stack_a->top = stack_a->top->next;
 		free (tmp);
+        tmp = NULL;
 		if (stack_a->top == stack_a->bottom)
 		{
 			free(stack_a->top);
+            stack_a->top =NULL;
+            stack_a->bottom = NULL;
 			break ;
 		}
 	}
 	free (stack_a);
+    stack_a = NULL;
 	while (stack_b->top)
 	{
 		tmp = stack_b->top;
@@ -44,6 +48,7 @@ void	cmd_pa(t_stack *a, t_stack *b)
 		a->top->previous = tmp;
 		tmp->next = a->top;
 		a->top = a->top->previous;
+		a->bottom = a->top->previous;
 		b->top = NULL;
 		free(b->top);
 		b = NULL;

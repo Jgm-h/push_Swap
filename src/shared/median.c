@@ -1,18 +1,14 @@
 #include "push_swap.h"
 
-int	median(t_stack *stack)
+void	median(t_stack *stack)
 {
 	t_stack		*tmp;
-	int			med;
 
 	tmp = init_stack();
 	tmp->top = fill_tmp(tmp, stack);
-
 	sort(tmp);
-	med = find_median(tmp);
-	printf("%d", med);
+	find_median(tmp, stack);
 	free_median(tmp);
-	return (med);
 }
 
 t_module	*fill_tmp(t_stack *tmp, t_stack *stack)
@@ -83,17 +79,21 @@ void	swap_median(t_module *top, t_module *current)
 	}
 }
 
-int	find_median(t_stack	*tmp)
+void	find_median(t_stack	*tmp, t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	while (i < tmp->size / 2)
-	{
-		tmp->top = tmp->top->next;
-		i++;
-	}
-	return (tmp->top->data);
+    while (i++ < tmp->size)
+    {
+        tmp->top = tmp->top->next;
+        if (i == tmp->size/4)
+            stack->quartmed = tmp->top->data;
+        if (i == tmp->size/2)
+            stack->med = tmp->top->data;
+        if (i == tmp->size/4 * 3)
+            stack->threequartmed = tmp->top->data;
+    }
 }
 
 void	free_median(t_stack *tmp)
@@ -105,7 +105,10 @@ void	free_median(t_stack *tmp)
 	{
 		tmp->top = tmp->top->next;
 		free(top);
+        top = NULL;
 		top = tmp->top;
 	}
-	free (tmp);
+    tmp->bottom = NULL;
+	free(tmp);
+    tmp = NULL;
 }
