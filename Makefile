@@ -4,8 +4,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g3 -I./libft/includes -fsanitize=address
 AR = ar -rc
 
-SRCS_DIR = src/algo \
-		   src/push_swap \
+SRCS_DIR = src/push_swap \
 		   src/shared \
 
 OBJS_DIR = ./objs
@@ -14,19 +13,12 @@ LIBFT_DIR = ./libft
 LIBFT = libft.a
 BONUS_DIR = ./checker_bonus
 
-SRCS = ./push_swap/push_swap.c\
+SRCS = ./push_swap/main.c\
 	   ./shared/check_args.c \
-	   ./shared/stack_management.c \
 	   ./shared/special_atoi.c \
 	   ./shared/fill_stack.c \
-	   ./shared/median.c \
-	   ./shared/push_b.c	\
-	   ./shared/push_a.c	\
-	   ./shared/medianflag.c	\
-	   ./shared/push_b_five.c	\
-	   ./algo/five.c	\
-	   ./algo/hundred.c	\
-	   ./algo/five_hundred.c	\
+	   ./shared/binary.c	\
+
 
 
 

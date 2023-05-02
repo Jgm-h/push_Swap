@@ -56,7 +56,7 @@ void	sort(t_stack *tmp)
 			else
 				current = tmp->top;
 		}
-		count = is_sorted(tmp->top, tmp->bottom);
+		count = is_sorted(tmp->top);
 	}
 	tmp->top = top;
 }

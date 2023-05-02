@@ -1,7 +1,0 @@
-TO NOTE:
-the stacks are  circular, and they are doubly linked.
-when you modify a stack state in a function it's modified in the memory.
-
-hundred:
-    clean push_b
-    clean push_a
